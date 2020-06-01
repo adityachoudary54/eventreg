@@ -32,7 +32,7 @@ def index(request):
 
             # for i in formfields()+['idcard']:
             #     print(request.session[i])
-
+            request.session['confirm']=False
             return redirect('temp')
         
         return render(request,'reg/userForm.html')
@@ -46,12 +46,13 @@ def tempView(request):
             rs=request.session
         
             print('Submit FIle')
-            if(request.POST.get('confirm')=='1'):
+            if(request.POST.get('confirm')=='1' and rs['confirm']==False):
                 i=u.uuid4()
                 user=Register(regId=i.hex, username=rs['username'], mobile=rs['mobile'], email=rs['email'], regType=rs['regType'], noTickets=rs['noTickets'])
                 user.idcard=rs['idcard'].replace('/media','')
+                rs['confirm']=True
                 user.save()
-
+                
                 return HttpResponse(f'Successful Submission. ID is: {i.hex} len:{len(i.hex)}')
             else:
                 return redirect('index')
