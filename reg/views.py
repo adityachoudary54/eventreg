@@ -4,63 +4,64 @@ from django.core.files.storage import FileSystemStorage
 import uuid as u
 from datetime import datetime
 from .models import Register
-
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
-from django.conf import settings
 # Create your views here.
 def formfields():
     f=['username','mobile','email','idcard','regType','noTickets']
     return f
 
 def index(request):
-    if request.user.is_authenticated:
-        if request.method=='POST':
-            rs=request.session
-            getpost=request.POST.get
+    
+    rs=request.session
+    rs['previous']=rs.get('previous',False)
+    if request.method=='POST':
+        rs=request.session
+        getpost=request.POST.get
             
-            for i in formfields():
-                rs[i]=getpost(i)    
+        for i in formfields():
+            rs[i]=getpost(i)    
             
             # File storage
-            myfile=request.FILES['idcard']
-            fs=FileSystemStorage()
-            filename = fs.save(myfile.name, myfile)
-            uploaded_file_url = fs.url(filename)
+        myfile=request.FILES['idcard']
+        fs=FileSystemStorage()
+        filename = fs.save(myfile.name, myfile)
+        uploaded_file_url = fs.url(filename)
             # 
-            request.session['idcard']=uploaded_file_url
+        request.session['idcard']=uploaded_file_url
 
             # for i in formfields()+['idcard']:
             #     print(request.session[i])
-            request.session['confirm']=False
-            return redirect('temp')
-        
-        return render(request,'reg/userForm.html')
-    else:
-        return HttpResponse("Unauthorized access")
-
+        request.session['confirm']=False
+        # rs['previous']=False
+        return redirect('register:temp')
+    
+    
+    return render(request,'reg/userForm.html',)
+    
 
 def tempView(request):
-    if request.user.is_authenticated:
-        if request.method=='POST':
-            rs=request.session
-        
-            print('Submit FIle')
-            if(request.POST.get('confirm')=='1' and rs['confirm']==False):
-                i=u.uuid4()
-                user=Register(regId=i.hex, username=rs['username'], mobile=rs['mobile'], email=rs['email'], regType=rs['regType'], noTickets=rs['noTickets'])
-                user.idcard=rs['idcard'].replace('/media','')
-                rs['confirm']=True
-                user.save()
-                
-                return HttpResponse(f'Successful Submission. ID is: {i.hex} len:{len(i.hex)}')
-            else:
-                return redirect('index')
+    
+    if request.method=='POST':
         rs=request.session
-        context={}
-        for i in formfields()+['idcard']:
-            context[i]=request.session[i]
-        print(context)
-        return render(request,'reg/previewForm.html',context)
-    else:
-        return HttpResponse("Unauthorized access")
+        
+        
+        if(request.POST.get('confirm')=='1' and rs['confirm']==False):
+            i=u.uuid4()
+            t=i.hex
+            user=Register(regId=i.hex, username=rs['username'], mobile=rs['mobile'], email=rs['email'], regType=rs['regType'], noTickets=rs['noTickets'])
+            user.idcard=rs['idcard'].replace('/media','')
+            rs['confirm']=True
+            user.save()
+            context={}
+            for i in formfields():
+                context[i]=request.session[i]
+            context['regid']=str(t)
+            return render(request,'reg/successForm.html',context=context)
+        else:
+            
+            return redirect('register:index')
+    context={}
+    for i in formfields()+['idcard']:
+        context[i]=request.session[i]
+    print(context)
+    return render(request,'reg/previewForm.html',context)
+    

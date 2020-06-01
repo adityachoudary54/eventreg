@@ -1,68 +1,183 @@
-<!DOCTYPE html>
-<html lang="en">
+{%extends 'reg/base.html'%}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Userform</title>
-</head>
+{%block head%}
+<title>Register Here</title>
+{%endblock%}
+{%block body%}
 
-<body>
-    <form action="" method="post" enctype="multipart/form-data">
-        {%csrf_token%}
-        <table>
-            <tr>
-                <td>Name:</td>
-                <td><input type="text" name='username' required></td>
-            </tr>
-            <tr>
-                <td>Mobile:</td>
-                <td><input type="tel" name='mobile' required></td>
-            </tr>
-            <tr>
-                <td>Email:</td>
-                <td><input type="email" name="email" id="" required></td>
-            </tr>
-            <tr>
-                <td>ID card:</td>
-                <td><input type="file" name="idcard" id="" required></td>
-            </tr>
-            <tr>
-                <td>Registration Type</td>
-                <td><select name="regType" id="regType" >
+<!-- header -->
+
+
+<!-- end header  -->
+
+<!-- form  -->
+<form action="" method="post" enctype="multipart/form-data">
+{%csrf_token%}
+<section class="text-gray-500 bg-gray-900 body-font relative">
+    <div class="container px-5 py-24 mx-auto">
+        <div class="flex flex-col text-center w-full mb-12">
+            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Enter Your Details</h1>
+            <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Note: Only 1 ticket is available for self registrations</p>
+        </div>
+        <div class="lg:w-1/2 md:w-2/3 mx-auto">
+            <div class="flex flex-wrap -m-2">
+                <div class="p-3 w-full">
+                    <input
+                        class="w-full bg-gray-800 rounded border border-gray-700 text-white focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+                        placeholder="Name" type="text" name='username' required>
+                </div>
+                <div class="p-3 w-1/2">
+                    <input
+                        class="w-full bg-gray-800 rounded border border-gray-700 text-white focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+                        placeholder="Email" type="email" name='email' required>
+                </div>
+                
+                <div class="p-3 w-1/2">
+                    <input
+                        class="w-full bg-gray-800 rounded border border-gray-700 text-white focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+                        placeholder="Mobile" type="tel" name='mobile' required>
+                </div>
+                
+                    <div class="flex w-full  items-center justify-center my-3">
+                        <label class="w-64 flex flex-col items-center px-2 py-2 bg-dark text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-white">
+                            <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
+                            </svg>
+                            <span class="mt-2 text-base leading-normal">Upload ID card</span>
+                            <input type='file' class="hidden" name="idcard" required/>
+                        </label>
+                    </div>
+                    
+                    <div class="p-3 w-1/2">
+                        <!-- <label for="regType" class="text-grey">Enter Registration Type</label> -->
+                        <select name="regType" id="regType" class="w-full bg-gray-800 rounded border border-gray-700 text-grey focus:outline-none focus:border-indigo-500 text-base px-4 py-2">
+                            <option value="" selected>Enter Registration Type</option>
+                            <option value="Self" >Self</option>
+                            <option value="Group">Group</option>
+                            <option value="Corporate">Corporate</option>
+                            <option value="Others">Others</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                          <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                        </div>
+                      </div>    
+                      <div class="p-3 w-1/2" id="noTickets">
+                        <input
+                            class="w-full bg-gray-800 rounded border border-gray-700 text-white focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+                            placeholder="Select Number of Tickets" required type="number" name='noTickets'>
+                    </div>
+                <div class="p-2 w-full">
+                    <button
+                        class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Preview Data</button>
+                </div>
+                <div class="p-2 w-full pt-8 mt-8 border-t border-gray-800 text-center">
+                    <a class="text-indigo-500">example@email.com</a>
+                    <p class="leading-normal my-5">49 Smith St.
+                        <br>Saint Cloud, MN 56301
+                    </p>
+                    <span class="inline-flex">
+                        <a class="text-gray-500">
+                            <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                class="w-5 h-5" viewBox="0 0 24 24">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a class="ml-4 text-gray-500">
+                            <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                class="w-5 h-5" viewBox="0 0 24 24">
+                                <path
+                                    d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z">
+                                </path>
+                            </svg>
+                        </a>
+                        <a class="ml-4 text-gray-500">
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+                            </svg>
+                        </a>
+                        <a class="ml-4 text-gray-500">
+                            <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                class="w-5 h-5" viewBox="0 0 24 24">
+                                <path
+                                    d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z">
+                                </path>
+                            </svg>
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</form>
+<!-- endform  -->
+<!-- 
+<form action="" method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" name='username' value='' required></td>
+        </tr>
+        <tr>
+            <td>Mobile:</td>
+            <td><input type="tel" name='mobile' value='' required></td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><input type="email" name="email" id="" value="" required></td>
+        </tr>
+        <tr>
+            <td>ID card:</td>
+            <td><input type="file" name="idcard" id="" required></td>
+        </tr>
+        <tr>
+            <td>Registration Type</td>
+            <td><select name="regType" id="regType">
                     <option value="Self" selected>Self</option>
                     <option value="Group">Group</option>
                     <option value="Corporate">Corporate</option>
                     <option value="Others">Others</option>
                 </select></td>
-            </tr>
-            <tr>
-                <td>
-                    Enter Number of Tickets:
-                </td>
-                <td id="noTickets">
-                    <input type="number" value="1" name="noTickets" readonly min="1">
-                </td>
-            </tr>
-        </table>
-        <input type="submit" value="Submit">
-    </form>
-    <script>
-        // Important: To handle Dropdown List
-        function handleSelect(e){
-            let selectElement = event.target;
-            let value = selectElement.value;
-            if(value!=='Self'){
-                document.getElementById('noTickets').innerHTML=`<input type="number" value="1" name="noTickets" min="1">`;
-            }
-            if(value==='Self'){
-                document.getElementById('noTickets').innerHTML=`<input type="number" readonly value="1" name="noTickets" min="1">`;
-            }
+        </tr>
+        <tr>
+            <td>
+                Enter Number of Tickets:
+            </td>
+            <td id="noTickets">
+                <input type="number" value="1" name="noTickets" readonly min="1">
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="Submit">
+    <input type="reset" value="Reset">
+</form> -->
+<script>
+    // Important: To handle Dropdown List
+    function handleSelect(e) {
+        let selectElement = event.target;
+        let value = selectElement.value;
+        if (value === 'Self') {
+            document.getElementById('noTickets').innerHTML = `
+            <input class="w-full bg-gray-800 rounded border border-gray-700 text-white focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+                            placeholder="Select Number of Tickets" type="number" name='noTickets' readonly value='1'>  `;
         }
-        let selector=document.getElementById('regType');
-        selector.onchange=handleSelect;
-        
-    </script>
-</body>
+        if (value !== 'Self') {
+            document.getElementById('noTickets').innerHTML = `
+            <input
+                            class="w-full bg-gray-800 rounded border border-gray-700 text-white focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+                            placeholder="Select Number of Tickets" type="number" name='noTickets' min="1">`;
+        }
+    }
+    let selector = document.getElementById('regType');
+    if(selector.value=='Self'){
+        document.getElementById('noTickets').innerHTML = `
+            <input class="w-full bg-gray-800 rounded border border-gray-700 text-white focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+                            placeholder="Select Number of Tickets" type="number" name='noTickets' readonly value='1'>  `;
+    }
+    selector.onchange = handleSelect;
 
-</html>
+</script>
+{%endblock%}
