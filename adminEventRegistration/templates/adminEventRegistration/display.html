@@ -1,0 +1,35 @@
+{% extends 'adminEventRegistration/base.html' %} 
+{% block head %}
+<!-- Content from other templates -->
+{% endblock %} 
+{% block body %}
+<h3>List of registrations</h3>
+<table>
+    <thead>
+        <th>Registration id</th>
+        <th>Date of Registration</th>
+        <th>User Name</th>
+        <th>Contact Info</th>
+        <th>Email Id</th>
+        <th>Id card</th>
+        <th>Registration Type</th>
+        <th>Num_Tickets</th>
+    </thead>
+    {% for obj in objList %}
+    <tr>
+        <td><a href="../details/{{ obj.id }}">{{ obj.regId }}</a></td>
+        <td>{{ obj.date }}</td>
+        <td>{{ obj.username }}</td>
+        <td>{{ obj.mobile }}</td>
+        <td>{{ obj.email }}</td>
+        <td><img src="/media{{ obj.idcard }}" alt="Some error occured {{ obj.username }} img" srcset="" style="width: 80px;height: 60px;"></td>
+        <td>{{ obj.regType }}</td>
+        <td>{{ obj.noTickets }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<div style="width:50vw; margin:auto">
+    {{ pieChart|safe }}
+</div>
+
+{% endblock %} 

@@ -1,0 +1,36 @@
+{% extends 'adminEventRegistration/base.html' %} 
+{% block head %}
+<!-- Content from other templates -->
+{% endblock %} 
+{% block body %}
+<table>
+    <tr>
+        <td>Username</td>
+        <td>{{ obj.username }}</td>
+    </tr>
+    <tr>
+        <td>Date</td>
+        <td>{{ obj.date }}</td>
+    </tr>
+    <tr>
+        <td>Contact Info</td>
+        <td>{{ obj.mobile }}</td>
+    </tr>
+    <tr>
+        <td>Email Id</td>
+        <td>{{ obj.email }}</td>
+    </tr>
+    <tr>
+        <td>Id card</td>
+        <td><img src="/media{{ obj.idcard }}" alt="Some error occured {{ obj.username }} img" srcset="" style="width: 80px;height: 60px;"></td>
+    </tr>
+    <tr>
+        <td>Registration Type</td>
+        <td>{{ obj.regType }}</td>
+    </tr>
+    <tr>
+        <td>Number Of Tickets</td>
+        <td>{{ obj.noTickets }}</td>
+    </tr>
+</table>
+{% endblock %} 

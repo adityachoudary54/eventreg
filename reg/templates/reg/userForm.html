@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Userform</title>
+</head>
+
+<body>
+    <form action="" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        <table>
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" name='username' required></td>
+            </tr>
+            <tr>
+                <td>Mobile:</td>
+                <td><input type="tel" name='mobile' required></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="email" name="email" id="" required></td>
+            </tr>
+            <tr>
+                <td>ID card:</td>
+                <td><input type="file" name="idcard" id="" required></td>
+            </tr>
+            <tr>
+                <td>Registration Type</td>
+                <td><select name="regType" id="regType" >
+                    <option value="Self" selected>Self</option>
+                    <option value="Group">Group</option>
+                    <option value="Corporate">Corporate</option>
+                    <option value="Others">Others</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>
+                    Enter Number of Tickets:
+                </td>
+                <td id="noTickets">
+                    <input type="number" value="1" name="noTickets" readonly min="1">
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value="Submit">
+    </form>
+    <script>
+        // Important: To handle Dropdown List
+        function handleSelect(e){
+            let selectElement = event.target;
+            let value = selectElement.value;
+            if(value!=='Self'){
+                document.getElementById('noTickets').innerHTML=`<input type="number" value="1" name="noTickets" min="1">`;
+            }
+            if(value==='Self'){
+                document.getElementById('noTickets').innerHTML=`<input type="number" readonly value="1" name="noTickets" min="1">`;
+            }
+        }
+        let selector=document.getElementById('regType');
+        selector.onchange=handleSelect;
+        
+    </script>
+</body>
+
+</html>

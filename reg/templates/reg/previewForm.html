@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview Data</title>
+</head>
+<body>
+    <p>{{username}}</p>
+    <p>{{mobile}}</p>
+    <p>{{email}}</p>
+    <p>{{regType}}</p>
+    <p>{{noTickets}}</p>
+    <img src="{{idcard}}" alt="" srcset="">
+
+    <form action="" method="post" id="verify-form">
+        {%csrf_token%}
+        <input type="text" name='confirm' value="1" id="confirm" hidden>
+        <input type="submit" value="Confirm submission">
+        <button id="backButton">Go Back</button>
+    </form>
+
+    <script>
+        let backbtn=document.getElementById('backButton');
+        backbtn.addEventListener('click',(e)=>{
+            e.preventDefault();
+            console.log('go back');
+            document.getElementById('confirm').value="0";
+            document.getElementById('verify-form').submit();
+            
+        })
+    </script>
+</body>
+</html>
