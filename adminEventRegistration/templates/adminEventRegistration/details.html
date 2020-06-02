@@ -3,7 +3,7 @@
 <!-- Content from other templates -->
 {% endblock %} 
 {% block body %}
-<table>
+<!-- <table>
     <tr>
         <td>Username</td>
         <td>{{ obj.username }}</td>
@@ -32,5 +32,37 @@
         <td>Number Of Tickets</td>
         <td>{{ obj.noTickets }}</td>
     </tr>
-</table>
+</table> -->
+
+<section class="text-gray-500 bg-gray-900 body-font overflow-hidden">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="lg:w-4/5 mx-auto flex flex-wrap">
+        <div class="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
+          <div class="flex border-t border-gray-800 py-2">
+            <span class="text-gray-500">Name</span>
+            <span class="ml-auto text-white">{{ obj.username }}</span>
+          </div>
+          <div class="flex border-t border-gray-800 py-2">
+            <span class="text-gray-500">Email</span>
+            <span class="ml-auto text-white">{{ obj.email }}</span>
+          </div>
+          <div class="flex border-t border-gray-800 py-2">
+            <span class="text-gray-500">Phone</span>
+            <span class="ml-auto text-white">{{ obj.mobile }}</span>
+          </div>
+          <div class="flex border-t border-gray-800 py-2">
+            <span class="text-gray-500">Type of Registration</span>
+            <span class="ml-auto text-white">{{ obj.regType }}</span>
+          </div>
+          <div class="flex border-t border-b mb-6 border-gray-800 py-2">
+            <span class="text-gray-500">No Of Tickets</span>
+            <span class="ml-auto text-white">{{ obj.noTickets }}</span>
+          </div>
+        </div>
+        <div class="p-8 lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0 " >
+          <img alt="ID CARD HERE"  src="/media{{ obj.idcard }}">
+        </div>
+      </div>
+    </div>
+  </section>
 {% endblock %} 

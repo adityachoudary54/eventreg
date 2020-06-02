@@ -12,12 +12,12 @@ def createPie():
     for item in res:
         data.append(item)
     df=pd.DataFrame(data)
-    print(df)
-    print(df['regType'])
+    # print(df)
+    # print(df['regType'])
     fig = px.pie(df, values='dcount', names='regType',
              title='Distribution of Registrations' )
     fig.update_traces(textposition='inside', textinfo='percent+label')
-    print(os.getcwd())
+    # print(os.getcwd())
     fig.write_html('adminEventRegistration/embeddedHTML/pie.html')
-    a=plot(fig,filename='adminEventRegistration/embeddedHTML/pie.html',output_type='div',image_width=400,image_height=300)
+    a=plot(fig,filename='adminEventRegistration/embeddedHTML/pie.html',output_type='div',image_width=460,image_height=550)
     return a

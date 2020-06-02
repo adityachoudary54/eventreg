@@ -1,19 +1,80 @@
 {% extends 'adminEventRegistration/base.html' %}
 {% block head %}
         <!-- Content from other templates -->
+    <style>
+        /* #loginBaseContainer{
+            display:flex;
+            height:70vh;
+            width:50vw !important;
+            justify-content: center;
+            align-items: center;
+        }
+        form{
+            height:60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }  */
+        #imp{
+            width:70vw;
+        }
+    </style>
 {% endblock %}
 {% block body %}
-<div class="container" id="base">
-  <form method="POST">
-    {% csrf_token %} 
-    {{ form.non_field_errors }} 
-    {% for field in form.visible_fields %}
-    <div class="form-group">
-      {{ field.label_tag }} {{ field.errors }} {{ field }} {{ field.help_text }}
-    </div>
-    {% endfor %}
-    <button type="submit" class="btn btn-primary">Login</button>
-  </form>
-</div>
+<!-- <div class="mx-auto" id="loginBaseContainer">
+    <form method="POST" class='bg-gray-800 shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full' >
+        {% csrf_token %} 
+        {{ form.non_field_errors }} 
+        {% for field in form.visible_fields %}
+            <div class="mb-6 w-full">
+                {{ field.label_tag }} {{ field.errors }} {{ field }} {{ field.help_text }}
+            </div>
+        {% endfor %}
+        <div class="flex items-center justify-between">
+            <button type="submit" class="btn btn-primary" id='submitButton' style="background-color: rgb(45, 48, 52);">Login</button>
+        </div>
+        </form>
+</div> -->
 
+
+<section class="text-gray-500 bg-gray-900 body-font relative h-full" style='height:89.2vh'>
+    <div class="container px-5 py-24 mx-auto" id='imp'>
+      <div class="flex flex-col text-center w-full mb-12">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Login</h1>
+        <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Welcome to event registration</p>
+      </div>
+      <div class="lg:w-1/2 md:w-2/3 mx-auto">
+        <div class="flex flex-wrap -m-2">
+            <form method="POST" class='w-full' >
+                {% csrf_token %} 
+                {{ form.non_field_errors }} 
+                {% for field in form.visible_fields %}
+                    <div class="p-4 w-full">
+                        {{ field.errors }} {{ field }} {{ field.help_text }}
+                    </div>
+                {% endfor %}
+                <div class="p-4 w-full">
+                    <button type="submit" id='submitButton' >Login</button>
+                </div>
+            </form>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
+
+
+{% block script %} 
+<script>
+    let inputTags=document.getElementsByTagName('input');
+    Array.from(inputTags).forEach(function(ele,index) {
+        ele.className+="w-full bg-gray-800 rounded border border-gray-700 text-white focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mx-auto"
+        ele.style.width='100%';
+    });
+    let buttonTag=document.getElementById('submitButton');
+    buttonTag.className+="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+</script>
 {% endblock %}

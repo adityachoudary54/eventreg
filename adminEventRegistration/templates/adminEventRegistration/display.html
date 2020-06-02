@@ -1,10 +1,23 @@
 {% extends 'adminEventRegistration/base.html' %} 
 {% block head %}
 <!-- Content from other templates -->
+<style>
+    #table{
+        height: 48vh !important;
+        overflow-y: scroll !important;
+    }
+    th{
+        top: 0;
+        position: sticky;
+    }
+    a:visited{
+        color: rgb(182, 243, 220);
+    }
+</style>
 {% endblock %} 
 {% block body %}
-<h3>List of registrations</h3>
-<table>
+<!-- <h3>List of registrations</h3> -->
+<!-- <table>
     <thead>
         <th>Registration id</th>
         <th>Date of Registration</th>
@@ -30,6 +43,57 @@
 </table>
 <div style="width:50vw; margin:auto">
     {{ pieChart|safe }}
-</div>
+</div> -->
 
+<section class="text-gray-500 bg-gray-900 body-font" style='height: 89.2vh;'>
+    <div class="container mx-auto flex flex-wrap" style='padding-top:2.2rem'>
+      <div class="lg:w-2/5 w-full mb-10 lg:mb-0 rounded-lg overflow-hidden" style='margin-top:2.2rem'>
+        <!-- <img alt="feature" class="object-cover object-center h-full w-full" src="https://dummyimage.com/460x500"> -->
+        <div>
+            {{ pieChart|safe }}
+        </div>
+      </div>
+      <div class="flex flex-col flex-wrap lg:py-6 -mb-10 lg:w-1/2 lg:pl-12 lg:text-left text-center " style='margin:0.5625rem'>
+        <div class="flex flex-col mb-10 lg:items-start items-center">
+          <!-- <div class="w-12 h-12 inline-flex items-center justify-center rounded-full bg-gray-800 text-indigo-400 mb-5">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-6 h-6" viewBox="0 0 24 24">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+            </svg>
+          </div> -->
+          <div class="flex-grow table" >
+            <h1 class="text-white text-3xl title-font  mb-3 mx-auto">List of registered participants</h1>
+            <!-- <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p> -->
+            <div id="table" style='margin-top:3rem;'>
+                <table class="overflow-y-auto h-32">
+                    <thead class='px-8 py-4 '>
+                        <th class='px-8 py-4 text-black bg-white'>Registration id</th>
+                        <th class='px-8 py-4 text-black bg-white'>Date of Registration</th>
+                        <th class='px-8 py-4 text-black bg-white'>User Name</th>
+                    </thead>
+                    {% for obj in objList %}
+                        <tr class='px-8 py-4'>
+                            <td class='px-8 py-4'><a href="../details/{{ obj.id }}" class='text-indigo-200 hover:text-indigo-400'>{{ obj.regId }}</a></td>
+                            <td class='px-8 py-4'>{{ obj.date }}</td>
+                            <td class='px-8 py-4'>{{ obj.username }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="flex flex-col mb-10 lg:items-start items-center">
+          <div class="flex-grow">
+            <h2 class="text-white text-lg title-font font-medium mb-3">The Catalyzer</h2>
+            <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
+          </div>
+        </div>
+        <div class="flex flex-col mb-10 lg:items-start items-center">
+          <div class="flex-grow">
+            <h2 class="text-white text-lg title-font font-medium mb-3">Neptune</h2>
+            <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </section>
 {% endblock %} 
