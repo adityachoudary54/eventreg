@@ -1,10 +1,11 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .forms import userForm
+from .forms import userForm,announcementsForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.conf import settings
 from reg.models import Register
+from .models import Announcements
 import adminEventRegistration.creatingPieChart as pie
 # Create your views here.
 def index(request):
@@ -33,9 +34,19 @@ def display(request):
     if request.user.is_authenticated:
         querySet = Register.objects.all()
         pieChart= pie.createPie()
+        
+        if request.method=='POST':
+            form = announcementsForm(request.POST)
+            if form.is_valid():
+                form.save()
+                form = announcementsForm()
+                return redirect ('./')
+
+        form = announcementsForm(None)
         context = {
             "objList": querySet,
-            "pieChart":pieChart
+            "pieChart":pieChart,
+            'form':form
         }
         return render(request, "adminEventRegistration/display.html", context)
     else:
