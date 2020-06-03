@@ -5,7 +5,7 @@
 <section class="text-gray-500 bg-gray-900 body-font overflow-hidden" style="height: 89vh;">
     <div class="container px-5 py-24 mx-auto">
         <div class="lg:w-full mx-auto flex flex-wrap">
-            <div class="lg:w-full w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
+            <div class="lg:w-full w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0" id="text-print">
                 <div class="flex border-t border-gray-800 py-2">
                     <span class="text-gray-500">Registration ID(Copy this for future reference)</span>
                     <span class="ml-auto text-white">{{regid}}</span>
@@ -33,13 +33,27 @@
                 <button
                     class="ml-1 inline-flex text-black bg-gray-300 border-0 py-2 px-6 focus:outline-none hover:bg-gray-500 rounded text-lg"
                     id="backButton">Print</button>
+                
+                <a href="{% url 'register:index' %}">    <button
+                    class="ml-1 inline-flex text-black bg-gray-300 border-0 py-2 px-6 focus:outline-none hover:bg-gray-500 rounded text-lg"
+                    id="anotherButton">Register Another</button></a>
+                
             </div>
 
         </div>
 </section>
 <script>
     document.getElementById('backButton').addEventListener('click',(e)=>{
+        let header=document.getElementById('nav-header');
+        header.style.display="None";
+        document.getElementById('backButton').style.display="None";
+        document.getElementById('text-print').style='color:black';
+        document.getElementById('anotherButton').style.display="None";
         print();
+        
+        document.getElementById('backButton').style.display="inline";
+        document.getElementById('anotherButton').style.display="inline";
+        header.style.display="flex";
     });
 </script>
 {%endblock%}
