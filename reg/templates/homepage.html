@@ -1,4 +1,5 @@
 {%extends 'reg/base.html'%}
+{% load static %}
 
 {%block head%}
 {%endblock%}
@@ -71,59 +72,6 @@
     </div>
   </section>
 
-  <section class="text-gray-500 bg-gray-900 body-font p-10">
-    <div class="container px-5 py-18 mx-auto">
-      <div class="flex flex-col">
-        <!-- <div class="h-1 bg-gray-800 rounded overflow-hidden">
-          <div class="w-24 h-full bg-indigo-500"></div>
-        </div> -->
-        <div class="flex flex-wrap sm:flex-row flex-col py-6 mb-12">
-          <h1 class="sm:w-2/5 text-white font-medium title-font text-2xl mb-2 sm:mb-0">Creating tickets.</h1>
-          <p class="sm:w-3/5 leading-relaxed text-base sm:pl-10 pl-0 text-right">Tickets can be generated in three simple steps.</p>
-        </div>
-      </div>
-      <div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
-        <div class="p-4 md:w-1/3 sm:mb-0 mb-6">
-          <div class="rounded-lg h-64 overflow-hidden">
-            <img alt="content" class="object-cover object-center h-full w-full" src="https://dummyimage.com/1203x503">
-          </div>
-          <h2 class="text-xl font-medium title-font text-white mt-5">Shooting Stars</h2>
-          <p class="text-base leading-relaxed mt-2">Swag shoindxgoitch literally meditation subway tile tumblr cold-pressed. Gastropub street art beard dreamcatcher neutra, ethical XOXO lumbersexual.</p>
-          <a class="text-indigo-500 inline-flex items-center mt-3">Learn More
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
-        <div class="p-4 md:w-1/3 sm:mb-0 mb-6">
-          <div class="rounded-lg h-64 overflow-hidden">
-            <img alt="content" class="object-cover object-center h-full w-full" src="https://dummyimage.com/1204x504">
-          </div>
-          <h2 class="text-xl font-medium title-font text-white mt-5">The Catalyzer</h2>
-          <p class="text-base leading-relaxed mt-2">Swag shoindxigoitch literally meditation subway tile tumblr cold-pressed. Gastropub street art beard dreamcatcher neutra, ethical XOXO lumbersexual.</p>
-          <a class="text-indigo-500 inline-flex items-center mt-3">Learn More
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
-        <div class="p-4 md:w-1/3 sm:mb-0 mb-6">
-          <div class="rounded-lg h-64 overflow-hidden">
-            <img alt="content" class="object-cover object-center h-full w-full" src="https://dummyimage.com/1205x505">
-          </div>
-          <h2 class="text-xl font-medium title-font text-white mt-5">The 400 Blows</h2>
-          <p class="text-base leading-relaxed mt-2">Swag shoindegoitch literally meditation subway tile tumblr cold-pressed. Gastropub street art beard dreamcatcher neutra, ethical XOXO lumbersexual.</p>
-          <a class="text-indigo-500 inline-flex items-center mt-3">Learn More
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
-      </div>
-      <button class="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Button</button>
-    </div>
-  </section>
-
   <section class="text-gray-700 body-font bg-white">
     <div class="container px-5 py-24 mx-auto">
       <div class="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
@@ -180,6 +128,55 @@
       <button class="flex mx-auto mt-20 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Button</button>
     </div>
   </section>
+
+  <section class="text-gray-500 bg-gray-900 body-font p-10">
+    <div class="container px-5 py-18 mx-auto">
+      <div class="flex flex-col">
+        <!-- <div class="h-1 bg-gray-800 rounded overflow-hidden">
+          <div class="w-24 h-full bg-indigo-500"></div>
+        </div> -->
+        <div class="flex flex-wrap sm:flex-row flex-col py-6 mb-12">
+          <h1 class="sm:w-2/5 text-white font-medium title-font text-2xl mb-2 sm:mb-0">Creating tickets.</h1>
+          <p class="sm:w-3/5 leading-relaxed text-base sm:pl-10 pl-0 text-right">Tickets can be generated in three simple steps.</p>
+        </div>
+      </div>
+      <div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
+        <div class="p-4 md:w-1/3 sm:mb-0 mb-6">
+          <div class='border-dashed border-white border-4'>
+            <img alt="ticket1" src="{% static 'ticket1.png' %}" >
+          </div>
+          <h2 class="text-xl font-medium title-font text-white mt-5">Enter your details</h2>
+          <p class="text-base leading-relaxed mt-2">Enter all the details asked. Registration type should be one of the following(self, group, corporate, others). <br> Id card should be in image formats (png, jpg).</p>
+          
+        </div>
+        <div class="p-4 md:w-1/3 sm:mb-0 mb-6">
+          <!-- <div class="rounded-lg h-64 overflow-hidden">
+            <img alt="content" class="object-cover object-center h-full w-full" src="https://dummyimage.com/1204x504">
+          </div> -->
+          <div class='border-dashed border-white border-4'>
+            <img alt="ticket1" src="{% static 'ticket2.png' %}" >
+          </div>
+          <h2 class="text-xl font-medium title-font text-white mt-5">Verify Details</h2>
+          <p class="text-base leading-relaxed mt-2">Verify all your details. If you want to make some changes, then click on make changes. Else, click on Confirm to save details.</p>
+          
+        </div>
+        <div class="p-4 md:w-1/3 sm:mb-0 mb-6">
+          <!-- <div class="rounded-lg h-64 overflow-hidden">
+            <img alt="content" class="object-cover object-center h-full w-full" src="https://dummyimage.com/1205x505">
+          </div> -->
+          <div class='border-dashed border-white border-4'>
+            <img alt="ticket1" src="{% static 'ticket3.png' %}" >
+          </div>
+          <h2 class="text-xl font-medium title-font text-white mt-5">Print Ticket</h2>
+          <p class="text-base leading-relaxed mt-2">Click on the print button to generate a ticket in PDF format. Remember the Registration ID for future details.<br>Click on Register another to make a new registration.</p>
+          
+        </div>
+      </div>
+      <button class="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"><a href="{% url 'register:index' %}" class='text-white'>Register here</a> </button>
+    </div>
+  </section>
+
+  
   
 
 {%endblock%}
