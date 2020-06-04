@@ -23,5 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/',include('reg.urls')),
     path('adminLogin/',include('adminEventRegistration.urls')),
-    
+    path('',views.index,name='home')
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
