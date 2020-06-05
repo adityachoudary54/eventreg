@@ -19,11 +19,28 @@ class announcementsForm(forms.ModelForm):
             }
         ),
     )
+    date = forms.DateField(
+        widget=forms.DateInput(
+            attrs={
+                "type":'date',
+                "class": "w-full bg-gray-100 rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2",
+            }
+        ),
+    )
+    req = forms.CharField(
+        max_length=200,
+        widget=forms.Textarea(
+            attrs={
+                "placeholder": "Add requirements of event",
+                "class": "w-full bg-gray-100 rounded border border-gray-400 focus:outline-none h-48 focus:border-indigo-500 text-base px-4 py-2 resize-none block",
+            }
+        ),
+    )
     info = forms.CharField(
         max_length=2000,
         widget=forms.Textarea(
             attrs={
-                "placeholder": "Write the announcement to be made",
+                "placeholder": "Add details of event",
                 "class": "w-full bg-gray-100 rounded border border-gray-400 focus:outline-none h-48 focus:border-indigo-500 text-base px-4 py-2 resize-none block",
             }
         ),
@@ -33,4 +50,6 @@ class announcementsForm(forms.ModelForm):
         fields = [
             "info",
             "location",
+            "date",
+            'req'
         ]
