@@ -18,7 +18,7 @@ creating event registration website for a hackathon
  * sqlparse==0.3.1
 
 # To run code(After installing requirements)
-python3 manage.py createsuperuser(give an admin id and password to be used)
-add an announcement to anouncements database
-python3 manage.py runserver
+* python3 manage.py createsuperuser(give an admin id and password to be used)
+* add an announcement to anouncements database
+* python3 manage.py runserver
 
