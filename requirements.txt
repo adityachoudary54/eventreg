@@ -2,7 +2,7 @@ asgiref==3.2.10
 Django==3.1
 django-extensions==3.0.5
 graphviz==0.14.1
-numpy==1.19.1
+numpy==1.22.0
 pandas==1.1.1
 plotly==4.9.0
 pydotplus==2.0.2
